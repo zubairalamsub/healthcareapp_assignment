@@ -22,6 +22,15 @@ A full-stack healthcare management application for managing patients, caregivers
 
 ## 🚀 Quick Start
 
+### 0. Configure Connection String (First!)
+Update `Backend/appsettings.json` with your SQL Server connection string:
+```json
+"ConnectionStrings": {
+  "DefaultConnection": "Server=YOUR_SERVER;Database=HealthcareDb;User Id=YOUR_USER;Password=YOUR_PASSWORD;TrustServerCertificate=True"
+}
+```
+For Windows Authentication, use: `Server=localhost;Database=HealthcareDb;Trusted_Connection=True;TrustServerCertificate=True`
+
 ### 1. Database Setup
 ```bash
 sqlcmd -S localhost -i Database/SetupDatabase.sql
