@@ -34,7 +34,7 @@ cd Backend
 dotnet restore
 dotnet run
 ```
-Runs on `http://localhost:5000`
+Runs on `https://localhost:7097`
 
 ### 3. Frontend
 ```bash
