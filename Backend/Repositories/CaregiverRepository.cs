@@ -25,11 +25,28 @@ namespace HealthcareApp.Repositories
 
             if (!string.IsNullOrWhiteSpace(searchDto.Keyword))
             {
-                var keyword = searchDto.Keyword.Trim();
-                query = query.Where(c =>
-                    EF.Functions.Like(c.FirstName, $"%{keyword}%") ||
-                    EF.Functions.Like(c.LastName, $"%{keyword}%") ||
-                    EF.Functions.Like(c.Phone, $"%{keyword}%"));
+                var keyword = searchDto.Keyword.Trim().ToLower();
+                var keywords = keyword.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+                if (keywords.Length > 1)
+                {
+                    // Multiple words: match all words against FirstName or LastName (for full name search)
+                    query = query.Where(c =>
+                        keywords.All(k =>
+                            c.FirstName.ToLower().Contains(k) ||
+                            c.LastName.ToLower().Contains(k)) ||
+                        c.Phone.Contains(keyword) ||
+                        c.Email.ToLower().Contains(keyword));
+                }
+                else
+                {
+                    // Single word: original behavior
+                    query = query.Where(c =>
+                        c.FirstName.ToLower().Contains(keyword) ||
+                        c.LastName.ToLower().Contains(keyword) ||
+                        c.Phone.Contains(keyword) ||
+                        c.Email.ToLower().Contains(keyword));
+                }
             }
 
             if (searchDto.OfficeId.HasValue)

@@ -12,8 +12,8 @@
     <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
       <div class="search-row">
         <select formControlName="officeId" class="office-select">
-          <option [value]="null">All Offices</option>
-          <option *ngFor="let office of offices" [value]="office.id">
+          <option [ngValue]="null">All Offices</option>
+          <option *ngFor="let office of offices" [ngValue]="office.id">
             {{ office.name }}
           </option>
         </select>
