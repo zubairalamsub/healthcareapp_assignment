@@ -1,0 +1,76 @@
+<div class="office-container">
+  <div class="header">
+    <h2>Office Directory</h2>
+  </div>
+
+  <div class="alert alert-error" *ngIf="error">
+    {{ error }}
+    <button class="close-btn" (click)="error = ''">×</button>
+  </div>
+
+  <div class="search-container">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <div class="search-row">
+        <input
+          type="text"
+          formControlName="keyword"
+          class="search-input"
+          placeholder="Search by name, address, phone...">
+        <button type="submit" class="btn btn-primary" [disabled]="loading">
+          {{ loading ? 'Searching...' : 'Search' }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="loading" *ngIf="loading">Loading...</div>
+
+  <div class="grid-container" *ngIf="!loading">
+    <div class="office-cards">
+      <div class="office-card" *ngFor="let office of offices">
+        <div class="card-header">
+          <h3>{{ office.name }}</h3>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <strong>Address:</strong>
+            <span>{{ office.address }}</span>
+          </div>
+          <div class="info-row">
+            <strong>Phone:</strong>
+            <span>{{ office.phone }}</span>
+          </div>
+          <div class="stats">
+            <div class="stat-item">
+              <span class="stat-number">{{ office.patientCount }}</span>
+              <span class="stat-label">Patients</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{{ office.caregiverCount }}</span>
+              <span class="stat-label">Caregivers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="no-data" *ngIf="offices.length === 0">
+        No offices found
+      </div>
+    </div>
+
+    <div class="pagination">
+      <button
+        class="btn btn-sm"
+        (click)="onPageChange(page - 1)"
+        [disabled]="page === 1">
+        Previous
+      </button>
+      <span>Page {{ page }} of {{ totalPages }} ({{ totalCount }} total)</span>
+      <button
+        class="btn btn-sm"
+        (click)="onPageChange(page + 1)"
+        [disabled]="page === totalPages || totalPages === 0">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

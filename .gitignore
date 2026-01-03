@@ -1,0 +1,20 @@
+# Node modules
+Frontend/node_modules/
+Frontend/.angular/
+
+# .NET build outputs
+Backend/bin/
+Backend/obj/
+Backend/.idea/
+*.user
+*.suo
+
+# IDE files
+.vs/
+.vscode/
+.idea/
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db

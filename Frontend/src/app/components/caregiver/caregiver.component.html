@@ -1,0 +1,83 @@
+<div class="caregiver-container">
+  <div class="header">
+    <h2>Caregiver Directory</h2>
+  </div>
+
+  <div class="alert alert-error" *ngIf="error">
+    {{ error }}
+    <button class="close-btn" (click)="error = ''">×</button>
+  </div>
+
+  <div class="search-container">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <div class="search-row">
+        <select formControlName="officeId" class="office-select">
+          <option [value]="null">All Offices</option>
+          <option *ngFor="let office of offices" [value]="office.id">
+            {{ office.name }}
+          </option>
+        </select>
+        <input
+          type="text"
+          formControlName="keyword"
+          class="search-input"
+          placeholder="Search by name, phone...">
+        <button type="submit" class="btn btn-primary" [disabled]="loading">
+          {{ loading ? 'Searching...' : 'Search' }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="loading" *ngIf="loading">Loading...</div>
+
+  <div class="grid-container" *ngIf="!loading">
+    <table class="caregiver-grid">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th class="sortable" (click)="sortColumn('FirstName')">
+            Name <span class="sort-icon">{{ getSortIcon('FirstName') }}</span>
+          </th>
+          <th>Specialization</th>
+          <th class="sortable" (click)="sortColumn('Phone')">
+            Phone <span class="sort-icon">{{ getSortIcon('Phone') }}</span>
+          </th>
+          <th class="sortable" (click)="sortColumn('Email')">
+            Email <span class="sort-icon">{{ getSortIcon('Email') }}</span>
+          </th>
+          <th>Office</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let caregiver of caregivers">
+          <td>{{ caregiver.id }}</td>
+          <td>{{ caregiver.firstName }} {{ caregiver.lastName }}</td>
+          <td><span class="badge">{{ caregiver.specialization }}</span></td>
+          <td>{{ caregiver.phone }}</td>
+          <td>{{ caregiver.email }}</td>
+          <td>{{ caregiver.officeName }}</td>
+        </tr>
+        <tr *ngIf="caregivers.length === 0">
+          <td colspan="6" class="no-data">No caregivers found</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <button
+        class="btn btn-sm"
+        (click)="onPageChange(page - 1)"
+        [disabled]="page === 1">
+        Previous
+      </button>
+      <span>Page {{ page }} of {{ totalPages }} ({{ totalCount }} total)</span>
+      <button
+        class="btn btn-sm"
+        (click)="onPageChange(page + 1)"
+        [disabled]="page === totalPages || totalPages === 0">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

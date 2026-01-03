@@ -1,0 +1,24 @@
+<nav class="navbar" *ngIf="currentUser">
+  <div class="navbar-brand">
+    <h1>Healthcare App</h1>
+  </div>
+
+  <ul class="navbar-nav">
+    <li><a routerLink="/patients" routerLinkActive="active">Patients</a></li>
+    <li><a routerLink="/caregivers" routerLinkActive="active">Caregivers</a></li>
+    <li><a routerLink="/offices" routerLinkActive="active">Offices</a></li>
+  </ul>
+
+  <div class="navbar-user">
+    <div class="user-info">
+      <span class="username">{{ currentUser.username }}</span>
+      <span class="role-badge-nav"
+            [class.role-admin]="currentUser.role?.toLowerCase() === 'admin'"
+            [class.role-manager]="currentUser.role?.toLowerCase() === 'manager'"
+            [class.role-user]="currentUser.role?.toLowerCase() === 'user'">
+        {{ currentUser.role }}
+      </span>
+    </div>
+    <button class="btn btn-logout" (click)="logout()">Logout</button>
+  </div>
+</nav>
