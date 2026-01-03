@@ -1,8 +1,4 @@
 -- =============================================
--- Healthcare App - Complete Database Setup Script
--- =============================================
-
--- =============================================
 -- STEP 0: Create Database
 -- =============================================
 PRINT '========================================';
@@ -10,18 +6,20 @@ PRINT 'Healthcare Database Setup';
 PRINT '========================================';
 PRINT '';
 
+-- Check and create database using dynamic SQL
 IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'HealthcareDB')
 BEGIN
     PRINT 'Creating HealthcareDB database...';
-    CREATE DATABASE HealthcareDB;
+    EXEC('CREATE DATABASE HealthcareDB');
     PRINT 'Database created successfully.';
 END
 ELSE
 BEGIN
     PRINT 'Database HealthcareDB already exists.';
 END
-PRINT '';
+GO
 
+-- Switch to the database
 USE HealthcareDB;
 GO
 
