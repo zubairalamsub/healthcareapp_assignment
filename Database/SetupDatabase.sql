@@ -211,11 +211,11 @@ INSERT INTO Offices (Name, Address, Phone) VALUES
 -- Seed Users (Password: Password123! for all users)
 PRINT 'Seeding Users...';
 INSERT INTO Users (Username, Email, PasswordHash, RoleId, IsActive) VALUES
-('admin', 'admin@healthcare.bd', 'AQAAAAIAAYagAAAAEMqZ8xF7Rr3pZGN6p0mVZJk5X8wF0xY9qH7tL2kN4mP5vQ6rS7uT8wU9xV0yA1zB2', 1, 1),
-('manager', 'manager@healthcare.bd', 'AQAAAAIAAYagAAAAEMqZ8xF7Rr3pZGN6p0mVZJk5X8wF0xY9qH7tL2kN4mP5vQ6rS7uT8wU9xV0yA1zB2', 2, 1),
-('user1', 'user1@healthcare.bd', 'AQAAAAIAAYagAAAAEMqZ8xF7Rr3pZGN6p0mVZJk5X8wF0xY9qH7tL2kN4mP5vQ6rS7uT8wU9xV0yA1zB2', 3, 1),
-('karim.admin', 'karim.admin@healthcare.bd', 'AQAAAAIAAYagAAAAEMqZ8xF7Rr3pZGN6p0mVZJk5X8wF0xY9qH7tL2kN4mP5vQ6rS7uT8wU9xV0yA1zB2', 1, 1),
-('nasrin.manager', 'nasrin.manager@healthcare.bd', 'AQAAAAIAAYagAAAAEMqZ8xF7Rr3pZGN6p0mVZJk5X8wF0xY9qH7tL2kN4mP5vQ6rS7uT8wU9xV0yA1zB2', 2, 1);
+('admin', 'admin@healthcare.bd', '$2a$11$9AK4w/kY1iP.hF/p/DYhHuhHNJYkIUSoIgwBZdTz5Hmtxs15xL8za', 1, 1),
+('manager', 'manager@healthcare.bd', '$2a$11$9AK4w/kY1iP.hF/p/DYhHuhHNJYkIUSoIgwBZdTz5Hmtxs15xL8za', 2, 1),
+('user1', 'user1@healthcare.bd', '$2a$11$9AK4w/kY1iP.hF/p/DYhHuhHNJYkIUSoIgwBZdTz5Hmtxs15xL8za', 3, 1),
+('karim.admin', 'karim.admin@healthcare.bd', '$2a$11$9AK4w/kY1iP.hF/p/DYhHuhHNJYkIUSoIgwBZdTz5Hmtxs15xL8za', 1, 1),
+('nasrin.manager', 'nasrin.manager@healthcare.bd', '$2a$11$9AK4w/kY1iP.hF/p/DYhHuhHNJYkIUSoIgwBZdTz5Hmtxs15xL8za', 2, 1);
 
 -- Seed Caregivers (Bangladeshi Names)
 PRINT 'Seeding Caregivers...';
